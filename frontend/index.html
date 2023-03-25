@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>hotels??</title>
+    </head>
+
+    <body>
+        <main>
+            <div> hello </div>
+        </main>
+
+        <script async
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGK0z8O79uqls2dtam9dVuhg0le4pmXUo&libraries=places">
+            function initMap(){
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    center: {lat: -33.866, lng: 151.196 },
+                    zoom: 15, // can get users locatin in future perhaps
+                });
+            }
+
+            window.initMap = initMap;
+        </script>
+    </body>
+</html>
+
