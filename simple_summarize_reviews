@@ -1,0 +1,31 @@
+from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.probability import FreqDist
+
+def summarize_reviews(reviews_list, num_sentences):
+    # Combine all reviews into a single string
+    all_reviews = " ".join(reviews_list)
+
+    # Tokenize the string into sentences and words
+    sentences = sent_tokenize(all_reviews)
+    words = word_tokenize(all_reviews)
+
+    # Create a frequency distribution of words
+    freq_dist = FreqDist(words)
+
+    # Create a list of the most common words
+    common_words = [word for word, freq in freq_dist.most_common(100)]
+
+    # Create a summary by selecting the most relevant sentences
+    summary_sentences = []
+    for sentence in sentences:
+        sentence_words = word_tokenize(sentence)
+        relevance = sum(1 for word in sentence_words if word in common_words)
+        if relevance > 0:
+            summary_sentences.append((sentence, relevance))
+
+    # Sort the summary sentences by relevance
+    summary_sentences.sort(key=lambda x: x[1], reverse=True)
+
+    # Return the first n sentences as the summary
+    summary = [sentence for sentence, relevance in summary_sentences[:num_sentences]]
+    return " ".join(summary)
