@@ -1,9 +1,14 @@
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.probability import FreqDist
 
+##This fucntion takes in a list of review stirngs, 
+##and returns the two most relevant sentences as summary
+
+
+
 def summarize_reviews(reviews_list, num_sentences):
     # Combine all reviews into a single string
-    all_reviews = " ".join(reviews_list)
+    all_reviews = "".join(reviews_list)
 
     # Tokenize the string into sentences and words
     sentences = sent_tokenize(all_reviews)
@@ -28,4 +33,4 @@ def summarize_reviews(reviews_list, num_sentences):
 
     # Return the first n sentences as the summary
     summary = [sentence for sentence, relevance in summary_sentences[:num_sentences]]
-    return " ".join(summary)
+    return "".join(summary)
